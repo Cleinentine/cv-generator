@@ -13,18 +13,11 @@ return new class extends Migration
     {
         Schema::create('achievements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('city_id')
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
-            $table->foreignId('country_id')
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete();
             $table->string('title');
+            $table->string('address');
             $table->string('awarded');
             $table->timestamps();
         });

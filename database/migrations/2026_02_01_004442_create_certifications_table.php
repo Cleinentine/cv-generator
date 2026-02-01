@@ -13,19 +13,12 @@ return new class extends Migration
     {
         Schema::create('certifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('city_id')
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
-            $table->foreignId('country_id')
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete();
             $table->string('title');
             $table->string('workshop');
+            $table->string('address');
             $table->string('certificate')->nullable();
             $table->string('start');
             $table->string('end');

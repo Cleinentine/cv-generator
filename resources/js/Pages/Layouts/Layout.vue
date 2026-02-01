@@ -1,4 +1,20 @@
-<script setup></script>
+<script setup>
+const navIcons = [
+    "fa-house",
+    "fa-user-plus",
+    "fa-paper-plane",
+    "fa-address-book",
+    "fa-message",
+];
+
+const navRoutes = [
+    route("home"),
+    route("register"),
+    route("forgot"),
+    route("contact"),
+    route("feedback"),
+];
+</script>
 
 <template>
     <aside
@@ -6,55 +22,21 @@
     >
         <nav>
             <ul>
-                <li>
+                <li v-for="(navRoute, navIndex) in navRoutes" :key="navIndex">
                     <Link
                         class="block duration-500 hover:bg-green-600 p-5 text-2xl"
-                        :href="route('home')"
+                        :href="navRoute"
                     >
-                        <span><i class="fa-solid fa-house"></i></span>
-                    </Link>
-                </li>
-
-                <li>
-                    <Link
-                        class="block duration-500 hover:bg-green-600 p-5 text-2xl"
-                        :href="route('login')"
-                    >
-                        <span><i class="fa-solid fa-user-plus"></i></span>
-                    </Link>
-                </li>
-
-                <li>
-                    <Link
-                        class="block duration-500 hover:bg-green-600 p-5 text-2xl"
-                        :href="route('forgot')"
-                    >
-                        <span><i class="fa-solid fa-paper-plane"></i></span>
-                    </Link>
-                </li>
-
-                <li>
-                    <Link
-                        class="block duration-500 hover:bg-green-600 p-5 text-2xl"
-                        :href="route('contact')"
-                    >
-                        <span><i class="fa-solid fa-address-book"></i></span>
-                    </Link>
-                </li>
-
-                <li>
-                    <Link
-                        class="block duration-500 hover:bg-green-600 p-5 text-2xl"
-                        :href="route('feedback')"
-                    >
-                        <span><i class="fa-solid fa-message"></i></span>
+                        <span
+                            ><i :class="`fa-solid ${navIcons[navIndex]}`"></i
+                        ></span>
                     </Link>
                 </li>
             </ul>
         </nav>
     </aside>
 
-    <main class="float-right relative w-[96%]">
+    <main class="max-w-screen-2xl mx-auto relative w-[96%]">
         <section class="p-5">
             <slot />
         </section>

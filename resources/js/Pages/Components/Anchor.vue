@@ -1,3 +1,17 @@
-<script setup></script>
+<script setup>
+defineProps({
+    link: {
+        type: String,
+    },
 
-<template></template>
+    text: {
+        type: String,
+    },
+});
+</script>
+
+<template>
+    <Link class="font-bold text-green-600 hover:underline" :href="link">{{
+        text
+    }}</Link>
+</template>

@@ -18,12 +18,11 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'city_id',
-        'country_id',
         'profile_picture',
         'first_name',
         'middle_name',
         'last_name',
+        'address',
         'email',
         'phone_number',
         'password',
@@ -67,16 +66,6 @@ class User extends Authenticatable
     public function certifications()
     {
         return $this->hasMany(Certification::class);
-    }
-
-    public function city()
-    {
-        return $this->hasOne(City::class);
-    }
-
-    public function country()
-    {
-        return $this->hasOne(Country::class);
     }
 
     public function educations()

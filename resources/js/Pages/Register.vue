@@ -1,3 +1,9 @@
-<script setup></script>
+<script setup>
+import UserForm from "./Layouts/UserForm.vue";
+</script>
 
-<template></template>
+<template>
+    <Head :title="$page.component" />
+
+    <UserForm />
+</template>

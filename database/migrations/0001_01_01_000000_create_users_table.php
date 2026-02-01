@@ -13,18 +13,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('city_id')
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
-            $table->foreignId('country_id')
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
             $table->string('profile_picture')->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->string('address');
             $table->string('email')->unique();
             $table->string('phone_number')->nullable();
             $table->timestamp('email_verified_at')->nullable();

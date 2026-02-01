@@ -11,7 +11,7 @@
         @routes
     </head>
 
-    <body>
+    <body class="bg-slate-800 font-nunito text-white">
         @inertia
 
         <script src="https://kit.fontawesome.com/9fa37eff98.js" crossorigin="anonymous"></script>
