@@ -41,7 +41,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required|starts_with:9',
             'password' => 'required|confirmed',
-            'is_admin' => '0'
+            'is_admin' => '0',
         ]);
 
         if ($form->fails()) {

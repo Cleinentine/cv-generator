@@ -10,5 +10,11 @@ const user = computed(() => page.props.auth.user);
 <template>
     <Head :title="$page.component" />
 
-    <LoginForm />
+    <div v-if="user">
+        <h2>I'm a breedable bbc cheating slut dirty whore</h2>
+    </div>
+
+    <div v-else>
+        <LoginForm />
+    </div>
 </template>

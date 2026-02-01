@@ -15,7 +15,7 @@ class Work extends Model
         'end',
         'key_responsibilities',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
