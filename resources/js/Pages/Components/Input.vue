@@ -12,6 +12,10 @@ const props = defineProps({
         type: String,
     },
 
+    name: {
+        type: String,
+    },
+
     placeholder: {
         type: String,
     },
@@ -34,6 +38,7 @@ function handleInput(event) {
             autocomplete="on"
             class="bg-slate-900 border-2 border-green-800 outline-none pl-[2.813rem] placeholder:italic px-7 py-3 rounded-md text-sm w-full"
             :id="id"
+            :name="name"
             :placeholder="placeholder"
             :type="type"
             :value="modelValue"

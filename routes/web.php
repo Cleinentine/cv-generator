@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,3 +13,6 @@ Route::inertia('/privacy', 'Privacy')->name('privacy');
 Route::inertia('/terms', 'Terms')->name('terms');
 
 Route::get('register', [UserController::class, 'create'])->name('register');
+
+Route::post('register', [UserController::class, 'store']);
+Route::post('login', [AuthController::class, 'login']);

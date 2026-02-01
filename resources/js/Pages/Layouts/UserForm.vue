@@ -1,12 +1,14 @@
 <script setup>
-import { useForm } from "@inertiajs/vue3";
+import { Form } from "@inertiajs/vue3";
 
 import Button from "../Components/Button.vue";
+import Error from "../Components/Error.vue";
+import File from "../Components/File.vue";
 import Guest from "../Layouts/Guest.vue";
 import Input from "../Components/Input.vue";
 import Label from "../Components/Label.vue";
 
-const inputIcons = [
+const icons = [
     "fa-tag",
     "fa-tag",
     "fa-tag",
@@ -17,29 +19,29 @@ const inputIcons = [
     "fa-redo",
 ];
 
-const inputLabels = [
+const labels = [
     "First Name",
     "Middle Name",
     "Last Name",
     "Complete Address",
     "Email",
-    "Mobile Number",
+    "Phone Number",
     "Password",
     "Repeat Password",
 ];
 
-const inputModels = [
+const models = [
     "first_name",
     "middle_name",
     "last_name",
     "address",
     "email",
-    "mobile",
+    "phone_number",
     "password",
     "password_confirmation",
 ];
 
-const inputPlaceholders = [
+const placeholders = [
     "e.g. John",
     "e.g. Jane",
     "e.g. Doe",
@@ -50,7 +52,7 @@ const inputPlaceholders = [
     "e.g. password12345!",
 ];
 
-const inputTypes = [
+const types = [
     "text",
     "text",
     "text",
@@ -60,17 +62,6 @@ const inputTypes = [
     "password",
     "password",
 ];
-
-const form = useForm({
-    first_name: "",
-    middle_name: "",
-    last_name: "",
-    email: "",
-    mobile: "",
-    password: "",
-    password_confirmation: "",
-    address: "",
-});
 </script>
 
 <template>
@@ -81,28 +72,49 @@ const form = useForm({
         heading="Sign-Up"
         :footerLink="route('login')"
     >
-        <form @submit.prevent="submit">
-            <div
-                class="mt-5"
-                v-for="(inputModel, inputIndex) in inputModels"
-                :key="inputIndex"
-            >
-                <Label
-                    :for="inputModels[inputIndex]"
-                    :text="inputLabels[inputIndex]"
-                />
+        <Form
+            disableWhileProcessing
+            method="POST"
+            resetOnSuccess
+            :action="route('register')"
+            :resetOnError="[
+                'profile_picture',
+                'password',
+                'password_confirmation',
+            ]"
+            #default="{ errors, processing }"
+        >
+            <div class="mt-5">
+                <Label for="profile_picture" text="Profile Picture" />
+                <File id="profile_picture" name="profile_picture" />
 
-                <Input
-                    :id="inputModels[inputIndex]"
-                    :icon="inputIcons[inputIndex]"
-                    :model="inputModels[inputIndex]"
-                    :placeholder="inputPlaceholders[inputIndex]"
-                    :type="inputTypes[inputIndex]"
-                    v-model="form[inputModel]"
-                />
+                <div v-if="errors.profile_picture">
+                    <Error :message="errors.profile_picture" />
+                </div>
             </div>
 
-            <Button icon="fa-user-plus" text="Sign-Up" type="submit" />
-        </form>
+            <div class="mt-5" v-for="(model, index) in models" :key="index">
+                <Label :for="models[index]" :text="labels[index]" />
+
+                <Input
+                    :id="models[index]"
+                    :icon="icons[index]"
+                    :name="models[index]"
+                    :placeholder="placeholders[index]"
+                    :type="types[index]"
+                />
+
+                <div v-if="errors[model]">
+                    <Error :message="errors[model]" />
+                </div>
+            </div>
+
+            <Button
+                icon="fa-user-plus"
+                text="Sign-Up"
+                type="submit"
+                :processing="processing"
+            />
+        </Form>
     </Guest>
 </template>

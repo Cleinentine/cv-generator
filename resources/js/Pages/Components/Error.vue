@@ -1,3 +1,14 @@
-<script setup></script>
+<script setup>
+defineProps({
+    message: {
+        type: String,
+    },
+});
+</script>
 
-<template></template>
+<template>
+    <p class="text-red-400 text-sm">
+        <span><i class="fa-solid fa-times-circle"></i></span>
+        {{ message }}
+    </p>
+</template>
