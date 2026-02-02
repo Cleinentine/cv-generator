@@ -1,5 +1,5 @@
 <script setup></script>
 
 <template>
-    <hr class="border-green-600 mx-auto my-5 w-1/2" />
+    <hr class="border-emerald-600 mx-auto my-5" />
 </template>

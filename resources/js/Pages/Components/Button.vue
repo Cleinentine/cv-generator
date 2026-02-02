@@ -22,7 +22,7 @@ defineProps({
 <template>
     <div class="mt-5 text-center">
         <button
-            class="bg-green-600 font-bold cursor-pointer disabled:bg-gray-400 duration-500 hover:bg-green-700 hover:rounded-md px-7 py-4 text-sm text-white uppercase"
+            class="bg-emerald-500 font-bold cursor-pointer disabled:bg-emerald-600 duration-500 hover:rounded-lg outline-none px-7 py-4 text-sm uppercase"
             :disabled="processing"
             :type="type"
         >

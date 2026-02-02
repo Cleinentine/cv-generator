@@ -40,7 +40,7 @@ class UserController extends Controller
             'address' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required|starts_with:9',
-            'password' => 'required|confirmed',
+            'password' => 'required|confirmed|min:8|regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/',
             'is_admin' => '0',
         ]);
 

@@ -26,7 +26,7 @@ defineProps({
 </script>
 
 <template>
-    <section class="bg-slate-700 mx-auto p-5 rounded-md w-[35%]">
+    <section class="bg-slate-700 p-5 rounded-md">
         <header class="grid grid-cols-2 mb-10">
             <div>
                 <h2 class="font-black font-montserrat text-4xl uppercase">

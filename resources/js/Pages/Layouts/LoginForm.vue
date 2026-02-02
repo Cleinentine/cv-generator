@@ -11,6 +11,7 @@ import Label from "../Components/Label.vue";
 
 <template>
     <Guest
+        class="mx-auto w-[25%]"
         footerAnchorText="Register"
         footerParagraph="Don't have an account yet?"
         icon="fa-right-to-bracket"

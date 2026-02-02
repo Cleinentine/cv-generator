@@ -1,44 +1,81 @@
 <script setup>
-const navIcons = [
-    "fa-house",
-    "fa-user-plus",
-    "fa-paper-plane",
-    "fa-address-book",
-    "fa-message",
-];
-
-const navRoutes = [
-    route("home"),
-    route("register"),
-    route("forgot"),
-    route("contact"),
-    route("feedback"),
-];
+import { Link } from "@inertiajs/vue3";
 </script>
 
 <template>
     <aside
-        class="bg-slate-900 fixed h-screen py-5 text-center text-white w-[4%]"
+        class="bg-slate-900 fixed inset-y-0 left-0 w-18 py-5 text-center text-white"
     >
         <nav>
             <ul>
-                <li v-for="(navRoute, navIndex) in navRoutes" :key="navIndex">
+                <li>
                     <Link
-                        class="block duration-500 hover:bg-green-600 p-5 text-2xl"
-                        :href="navRoute"
+                        class="block duration-500 hover:bg-emerald-600 p-5 text-2xl"
+                        :href="route('home')"
+                    >
+                        <span><i class="fa-solid fa-home"></i></span>
+                    </Link>
+                </li>
+
+                <div v-if="!$page.props.auth.user">
+                    <li>
+                        <Link
+                            class="block duration-500 hover:bg-emerald-600 p-5 text-2xl"
+                            :href="route('register')"
+                        >
+                            <span><i class="fa-solid fa-user-plus"></i></span>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link
+                            class="block duration-500 hover:bg-emerald-600 p-5 text-2xl"
+                            :href="route('forgot')"
+                        >
+                            <span><i class="fa-solid fa-paper-plane"></i></span>
+                        </Link>
+                    </li>
+                </div>
+
+                <li class="absolute bottom-5 w-full" v-else>
+                    <Link
+                        as="button"
+                        class="block cursor-pointer duration-500 hover:bg-emerald-600 p-5 text-2xl w-full"
+                        method="post"
+                        :href="route('logout')"
                     >
                         <span
-                            ><i :class="`fa-solid ${navIcons[navIndex]}`"></i
+                            ><i class="fa-solid fa-right-from-bracket"></i
                         ></span>
+                    </Link>
+                </li>
+
+                <li>
+                    <Link
+                        class="block duration-500 hover:bg-emerald-600 p-5 text-2xl"
+                        :href="route('contact')"
+                    >
+                        <span><i class="fa-solid fa-address-book"></i></span>
+                    </Link>
+                </li>
+
+                <li>
+                    <Link
+                        class="block duration-500 hover:bg-emerald-600 p-5 text-2xl"
+                        :href="route('feedback')"
+                    >
+                        <span><i class="fa-solid fa-message"></i></span>
                     </Link>
                 </li>
             </ul>
         </nav>
     </aside>
 
-    <main class="max-w-screen-2xl mx-auto relative w-[96%]">
-        <section class="p-5">
-            <slot />
+    <main class="ml-18 min-h-screen">
+        <section class="w-full p-5">
+            <div class="w-full max-w-450 mx-auto">
+                <slot />
+            </div>
         </section>
 
         <!-- <footer class="bg-slate-900 p-5 text-center text-sm text-green-400">

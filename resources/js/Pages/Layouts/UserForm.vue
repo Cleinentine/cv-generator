@@ -20,14 +20,14 @@ const icons = [
 ];
 
 const labels = [
-    "First Name",
+    "First Name*",
     "Middle Name",
-    "Last Name",
-    "Complete Address",
-    "Email",
-    "Phone Number",
-    "Password",
-    "Repeat Password",
+    "Last Name*",
+    "Complete Address*",
+    "Email*",
+    "Phone Number*",
+    "Password*",
+    "Repeat Password*",
 ];
 
 const models = [
@@ -72,6 +72,23 @@ const types = [
         heading="Sign-Up"
         :footerLink="route('login')"
     >
+        <ul class="bg-slate-900 list-disc list-inside p-5 rounded-md">
+            <li><b>All fields marked by * are required.</b></li>
+
+            <li>
+                Image size shouldn't be bigger than 512kb and acceptable formats
+                are <b>.jpeg</b>, <b>.bmp</b>, <b>.png</b>.
+            </li>
+
+            <li>
+                Name shouldn't have any special characters excluding
+                <b>apostrophe (')</b>, <b>comma (,)</b>, <b>dash (-)</b>,
+                <b>dot (.)</b>.
+            </li>
+
+            <li>Phone number should start with 9.</li>
+        </ul>
+
         <Form
             disableWhileProcessing
             method="POST"
@@ -84,28 +101,30 @@ const types = [
             ]"
             #default="{ errors, processing }"
         >
-            <div class="mt-5">
-                <Label for="profile_picture" text="Profile Picture" />
-                <File id="profile_picture" name="profile_picture" />
+            <div class="gap-5 grid lg:grid-cols-3">
+                <div class="mt-5">
+                    <Label for="profile_picture" text="Profile Picture" />
+                    <File id="profile_picture" name="profile_picture" />
 
-                <div v-if="errors.profile_picture">
-                    <Error :message="errors.profile_picture" />
+                    <div v-if="errors.profile_picture">
+                        <Error :message="errors.profile_picture" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="mt-5" v-for="(model, index) in models" :key="index">
-                <Label :for="models[index]" :text="labels[index]" />
+                <div class="mt-5" v-for="(model, index) in models" :key="index">
+                    <Label :for="models[index]" :text="labels[index]" />
 
-                <Input
-                    :id="models[index]"
-                    :icon="icons[index]"
-                    :name="models[index]"
-                    :placeholder="placeholders[index]"
-                    :type="types[index]"
-                />
+                    <Input
+                        :id="models[index]"
+                        :icon="icons[index]"
+                        :name="models[index]"
+                        :placeholder="placeholders[index]"
+                        :type="types[index]"
+                    />
 
-                <div v-if="errors[model]">
-                    <Error :message="errors[model]" />
+                    <div v-if="errors[model]">
+                        <Error :message="errors[model]" />
+                    </div>
                 </div>
             </div>
 
